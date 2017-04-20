@@ -20,7 +20,6 @@ def detect_poly(data):
     start = get_startline(data)
     triangle_count = []
     count = 0
-    found = False
 
     while start != 0:
         if data >= start:
