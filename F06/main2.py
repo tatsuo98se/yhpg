@@ -1,14 +1,14 @@
 def right_func(input_num):
-    return input_num / 2 - 10
+    return input_num // 2 - 10
 
 def left_func(input_num):
-    return input_num * 2 / 3
+    return input_num * 2 // 3
 
 def calc(memo, input_num, target):
     if input_num in memo:
         return memo[input_num]
 
-    if input_num <= 0 or input_num < target:
+    if input_num < target:
         return 0
 
     if input_num == target:
