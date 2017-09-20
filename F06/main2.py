@@ -1,25 +1,23 @@
-
-
 def right_func(input_num):
     return input_num / 2 - 10
-    
+
 def left_func(input_num):
     return input_num * 2 / 3
 
-def calc(memo, function, input_num, target):
-    if input_num in memo and memo[input_num] > 0:
+def calc(memo, input_num, target):
+    if input_num in memo:
         return memo[input_num]
 
-    output_num = function(input_num)
-    if(output_num <= 0 or output_num < target):
+    if input_num <= 0 or input_num < target:
         return 0
-    if(output_num == target):
+
+    if input_num == target:
         return 1
 
-    ans =  calc(memo, right_func, output_num, target) + calc(memo, left_func, output_num, target)
+    ans = calc(memo, right_func(input_num), target) + calc(memo, left_func(input_num), target)
     memo[input_num] = ans
     return ans
-    
+
 def resolve(data):
     memo = {}
     counter = 0
@@ -28,13 +26,7 @@ def resolve(data):
     input_num = int(splited[0])
     target = int(splited[1])
 
-    if(input_num == target):
-        counter += 1
-
-    counter += calc(memo, right_func, input_num, target)
-    counter += calc(memo, left_func, input_num, target)
-
-    return str(counter)
+    return str(calc(memo, input_num, target))
 
 
 ## test logic
@@ -54,23 +46,23 @@ def test(data, expect):
         RESULT.fail += 1
 
 
-test( "123,4", "5" )    
-test( "1,1", "1" )    
-test( "2,1", "1" )    
-test( "3,3", "1" )    
-test( "19,5", "1" )    
-test( "69,5", "3" )    
-test( "88,9", "2" )    
-test( "1,100", "0" )    
-test( "100,4", "4" )    
-test( "101,9", "0" )    
-test( "456,7", "7" )    
-test( "567,8", "12" )    
-test( "756,10", "10" )    
-test( "789,10", "12" )    
-test( "896,29", "2" )    
-test( "7764,6", "664" )    
-test( "1234,56", "3" )    
+test( "123,4", "5" )
+test( "1,1", "1" )
+test( "2,1", "1" )
+test( "3,3", "1" )
+test( "19,5", "1" )
+test( "69,5", "3" )
+test( "88,9", "2" )
+test( "1,100", "0" )
+test( "100,4", "4" )
+test( "101,9", "0" )
+test( "456,7", "7" )
+test( "567,8", "12" )
+test( "756,10", "10" )
+test( "789,10", "12" )
+test( "896,29", "2" )
+test( "7764,6", "664" )
+test( "1234,56", "3" )
 test( "8563,29", "35" )    
 test( "12345,67", "10" )    
 test( "72927,51", "263" )    
