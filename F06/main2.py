@@ -1,8 +1,3 @@
-def right_func(input_num):
-    return input_num // 2 - 10
-
-def left_func(input_num):
-    return input_num * 2 // 3
 
 def calc(memo, input_num, target):
     if input_num in memo:
@@ -14,29 +9,24 @@ def calc(memo, input_num, target):
     if input_num == target:
         return 1
 
-    ans = calc(memo, right_func(input_num), target) + calc(memo, left_func(input_num), target)
+    ans = calc(memo, input_num // 2 - 10, target) + calc(memo, input_num * 2 // 3, target)
     memo[input_num] = ans
     return ans
 
 def resolve(data):
     memo = {}
-    counter = 0
-    splited = data.split(",")
+    split = data.split(",")
 
-    input_num = int(splited[0])
-    target = int(splited[1])
+    input_num = int(split[0])
+    target = int(split[1])
 
     return str(calc(memo, input_num, target))
 
 
 ## test logic
-class Result:
-    def __init__(self):
-        self.success = 0
-        self.fail = 0
-
-RESULT = Result()
-RESULT.success = RESULT.fail = 0
+class RESULT:
+    success = 0
+    fail = 0
 
 def test(data, expect):
     print("actual:" + resolve(data) + " expected:" + expect)
@@ -79,3 +69,4 @@ test( "12345678,90", "79419" )
 test( "5745432,1032", "1287" )
 
 print("Success: {0.success}, Fail: {0.fail}".format(RESULT))
+
