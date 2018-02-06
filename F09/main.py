@@ -2,8 +2,8 @@
 
 import numpy as np
 
-operations = {
-    # operation : axis, index, direction
+commands = {
+    # command : axis, index, direction
     'a' : (1, 0, -1),
     'b' : (1, 1, -1),
     'c' : (1, 2, -1),
@@ -32,19 +32,15 @@ def init_box():
         [7, 8, 9]
     ])
 
-def make_ans(s):
-    anser = ''
-    for i in range(9):
-        anser += str(s[i])
-        if (i+1)%3 == 0 and i != 8:
-            anser += '/'
-    return anser
+def make_ans(l):
+    s = ''.join(str(e) for e in l)
+    return s[0:3] + '/' + s[3:6] + '/' + s[6:9]
 
 def resolve(data):
     box = init_box()
 
     for c in data:
-        axis, row, shift = operations[c]
+        axis, row, shift = commands[c]
         roll(box, row, axis, shift)
 
     return make_ans(np.reshape(box, 9).ravel())
@@ -60,7 +56,7 @@ class RESULT:
 RESULT.success = RESULT.fail = 0
 
 def test(data, expect):
-    print "actual:" + resolve(data) + " expected:" + expect
+    print 'actual:' + resolve(data) + ' expected:' + expect
     if resolve(data) == expect:
         RESULT.success += 1
     else:
