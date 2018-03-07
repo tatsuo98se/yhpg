@@ -44,7 +44,7 @@ def get_number(arr, pos):
         return str(num)
 
 
-def resolve(arr, data):
+def solve(arr, data):
     p = find_pos(arr, int(data))
 
     result = []
@@ -65,7 +65,7 @@ RESULT.success = RESULT.fail = 0
 GUNEGUNE = make_squre()
 
 def test(data, expect):
-    r = resolve(GUNEGUNE, data)
+    r = solve(GUNEGUNE, data)
     print 'actual:' + r + ' expected:' + expect
     if r == expect:
         RESULT.success += 1

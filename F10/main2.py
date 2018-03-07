@@ -38,7 +38,7 @@ def find_pos(arr, num):
 
     raise RuntimeError
 
-def resolve(arr, data):
+def solve(arr, data):
     p = find_pos(arr, int(data))
     return ','.join([arr[p[0] + i[0]][p[1] + i[1]] for i in [[0, -1], [0, 1], [-1, 0], [1, 0]]])
 
@@ -55,7 +55,7 @@ RESULT.success = RESULT.fail = 0
 GUNEGUNE = make_squre()
 
 def test(data, expect):
-    r = resolve(GUNEGUNE, data)
+    r = solve(GUNEGUNE, data)
     print 'actual:' + r + ' expected:' + expect
     if r == expect:
         RESULT.success += 1
