@@ -3,7 +3,7 @@ import time
 
 SIZE = 100
 
-def make_squre():
+def make_square():
     arr = [['-' for i in range(SIZE+2)] for j in range(SIZE+2)]
   
     c = 1
@@ -12,17 +12,17 @@ def make_squre():
         is_odd = size%2 == 1
         for j in range(size):
             if is_odd:
-                arr[size][j+1] = str(c)
+                arr[size][j+1] = c
             else:
-                arr[j+1][size] = str(c)
+                arr[j+1][size] = c
 
             c += 1
 
         for j in reversed(range(size-1)):
             if is_odd:
-                arr[j+1][size] = str(c)
+                arr[j+1][size] = c
             else:
-                arr[size][j+1] = str(c)
+                arr[size][j+1] = c
 
             c += 1
 
@@ -33,15 +33,16 @@ def make_squre():
 def find_pos(arr, num):
     for i in range(SIZE):
         for j in range(SIZE):
-            if arr[i+1][j+1] == str(num):
+            if arr[i+1][j+1] == num:
                 return (i+1, j+1)
 
     raise RuntimeError
 
 def solve(arr, data):
     p = find_pos(arr, int(data))
-    return ','.join([arr[p[0] + i[0]][p[1] + i[1]] for i in [[0, -1], [0, 1], [-1, 0], [1, 0]]])
+    return ','.join([str(arr[p[0] + i[0]][p[1] + i[1]]) for i in [[0, -1], [0, 1], [-1, 0], [1, 0]]])
 
+GUNEGUNE = make_square()
 
 ################
 ## test logic ##
@@ -51,8 +52,6 @@ class RESULT:
     fail = 0
 
 RESULT.success = RESULT.fail = 0
-
-GUNEGUNE = make_squre()
 
 def test(data, expect):
     r = solve(GUNEGUNE, data)

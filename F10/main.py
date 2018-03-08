@@ -3,7 +3,7 @@ import time
 
 SIZE = 100
 
-def make_squre():
+def make_square():
     arr = [[0 for i in range(SIZE+2)] for j in range(SIZE+2)]
     
     c = 1
@@ -52,6 +52,7 @@ def solve(arr, data):
         result.append(get_number(arr, (p[0]+i[0], p[1]+i[1])))
     return ','.join(result)
 
+GUNEGUNE = make_square()
 
 ################
 ## test logic ##
@@ -62,7 +63,6 @@ class RESULT:
 
 RESULT.success = RESULT.fail = 0
 
-GUNEGUNE = make_squre()
 
 def test(data, expect):
     r = solve(GUNEGUNE, data)
